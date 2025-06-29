@@ -3,9 +3,14 @@ import sys
 from src.exception import customexception
 from src.logger import logging
 import pandas as pd
+import numpy as np
 
 from sklearn.model_selection import train_test_split
 from dataclasses import dataclass
+
+from src.components.data_transformation import datatransformation
+from src.components.data_transformation import datatransformationconfig
+
 
 @dataclass
 class dataingestconfig:
@@ -45,6 +50,10 @@ class dataingestion:
             raise customexception(e,sys)
         
 if __name__=="__main__":
-    obj=dataingestion()
-    obj.initiate_data_ingestion()
+    obj = dataingestion()
+    train_data, test_data = obj.initiate_data_ingestion()
+
+    data_transformation = datatransformation()
+    train_arr, test_arr, preprocessor_path = data_transformation.initiate_data_transformation(train_data, test_data)
+    # You can now use train_arr, test_arr, preprocessor_path as needed
 

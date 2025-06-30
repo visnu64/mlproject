@@ -11,6 +11,9 @@ from dataclasses import dataclass
 from src.components.data_transformation import datatransformation
 from src.components.data_transformation import datatransformationconfig
 
+from src.components.model_trainer import ModelTrainerConfig
+from src.components.model_trainer import ModelTrainer
+
 
 @dataclass
 class dataingestconfig:
@@ -56,4 +59,6 @@ if __name__=="__main__":
     data_transformation = datatransformation()
     train_arr, test_arr, preprocessor_path = data_transformation.initiate_data_transformation(train_data, test_data)
     # You can now use train_arr, test_arr, preprocessor_path as needed
-
+    
+    modeltrainer=ModelTrainer()
+    print(modeltrainer.initiate_model_trainer(train_arr,test_arr))
